@@ -1,0 +1,14 @@
+name: google-app-env
+channels:
+- fastai
+- pytorch
+- conda-forge
+dependencies:
+- pytorch-nightly-cpu
+#- pytorch
+- fastai
+- starlette
+- uvicorn
+- python-multipart
+- aiofiles
+- aiohttp
