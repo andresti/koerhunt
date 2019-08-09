@@ -8,10 +8,9 @@ from io import BytesIO
 from fastai import *
 from fastai.vision import *
 
-#model_file_url = 'https://www.dropbox.com/s/y4kl2gv1akv7y4i/stage-2.pth?raw=1'
-model_file_url = 'https://drive.google.com/uc?export=download&id=1bscliltJlK6MzCy6yV0qDc4F1SP3O13P'
+model_file_url = 'https://drive.google.com/uc?export=download&id=1mqWnwY0qlXEOcETFybrgaYyLi_RYYcAB'
 model_file_name = 'kasonhunt' #'model'
-classes = ['koer', 'hunt']
+classes = ['koer', 'hunt', 'midagi_muud']
 path = Path(__file__).parent
 
 app = Starlette()
@@ -54,7 +53,7 @@ async def analyze(request):
     rounded = round((pred[2].max().item()*100), 1)
     print(rounded)
     #.max())
-    return JSONResponse({'result': pred[0].obj, 'prob': rounded})
+    return JSONResponse({'result': pred[0].obj.replace("_", " "), 'prob': rounded})
 
 if __name__ == '__main__':
     if 'serve' in sys.argv: uvicorn.run(app, host='0.0.0.0', port=8080)
