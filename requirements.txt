@@ -2,7 +2,7 @@
 #torch_nightly
 torch==1.1.0
 torchvision==0.3.0
-fastai==1.0.55
+fastai==1.0.54
 starlette
 uvicorn
 python-multipart
