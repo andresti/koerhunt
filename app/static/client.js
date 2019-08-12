@@ -25,7 +25,14 @@ function analyze() {
     xhr.onload = function(e) {
         if (this.readyState === 4) {
             var response = JSON.parse(e.target.responseText);
-            el('result-label').innerHTML = `Olen ${response['prob']}% kindel, et pildil on ${response['result']}.`;
+            if (response['error_code'] == 0) {
+                el('result-label').style.color = '#000000'
+                el('result-label').innerHTML = `Olen ${response['prob']}% kindel, et pildil on ${response['result']}.`;
+            }
+            else {
+                el('result-label').style.color = '#ff0000'
+                el('result-label').innerHTML = `${response['error_msg']}`;
+            }
         }
         el('analyze-button').innerHTML = 'Analüüsi';
     }

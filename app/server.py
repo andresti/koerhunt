@@ -47,13 +47,15 @@ def index(request):
 async def analyze(request):
     data = await request.form()
     img_bytes = await (data['file'].read())
-    img = open_image(BytesIO(img_bytes))
-    pred = learn.predict(img)
-    print(pred)
-    rounded = round((pred[2].max().item()*100), 1)
-    print(rounded)
-    #.max())
-    return JSONResponse({'result': pred[0].obj.replace("_", " "), 'prob': rounded})
+    try:
+        img = open_image(BytesIO(img_bytes))
+        pred = learn.predict(img)        
+        rounded = round((pred[2].max().item()*100), 1)
+        response = JSONResponse({'result': pred[0].obj.replace("_", " "), 'prob': rounded, 'error_code':0})
+    except IOError as e:
+        response = JSONResponse({'error_code': 1, 'error_msg': "Ei suuda faili avada! Proovi mõnda teist faili"})
+    return response
+    
 
 if __name__ == '__main__':
     if 'serve' in sys.argv: uvicorn.run(app, host='0.0.0.0', port=8080)
