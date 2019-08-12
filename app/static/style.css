@@ -17,17 +17,23 @@ body {
 
 .title {
     font-size: 50px;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-top: 0.3em;
+    margin-bottom: 0.2em;
     color: #262626;
 }
 
 .content {
-    margin-top: 5em;
+    margin-top: 3em;
+}
+
+.intro {
+    margin-bottom: 1em;
+    font-size: 24px;
+    line-break: strict;
 }
 
 .analyze {
-    margin-top: 5em;
+    margin-top: 2em;
 }
 
 .upload-label {
